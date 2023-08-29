@@ -38,7 +38,7 @@ namespace SalesProject
 
             services.AddDbContext<SalesProjectContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("SalesProjectContext"), builder =>
-            builder.MigrationsAssembly(" SalesProject")));
+            builder.MigrationsAssembly("SalesProject")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
