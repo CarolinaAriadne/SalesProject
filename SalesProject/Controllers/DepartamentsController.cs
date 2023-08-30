@@ -9,11 +9,11 @@ using SalesProject.Models;
 
 namespace SalesProject.Controllers
 {
-    public class DepartamentsController : Controller
+    public class DepartmentsController : Controller
     {
         private readonly SalesProjectContext _context;
 
-        public DepartamentsController(SalesProjectContext context)
+        public DepartmentsController(SalesProjectContext context)
         {
             _context = context;
         }

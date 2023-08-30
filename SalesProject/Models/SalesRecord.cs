@@ -18,13 +18,18 @@ namespace SalesProject.Models
         public double Amount { get; set; }
 
         public Seller Seller { get; set; }
+        public int V1 { get; }
+        public DateTime DateTime { get; }
+        public double V2 { get; }
+        public SalesStatus Billed { get; }
+        public Seller S1 { get; }
 
         public SalesRecord()
         {
 
         }
 
-        public SalesRecord (int id, DateTime date, SalesStatus status, double amount, Seller seller)
+        public SalesRecord (int id, DateTime date, double amount, SalesStatus status, Seller seller)
         {
             Id = id;
             Date = date;
@@ -32,6 +37,8 @@ namespace SalesProject.Models
             Amount = amount;
             Seller = seller;
         }
+
+     
     }
 
    

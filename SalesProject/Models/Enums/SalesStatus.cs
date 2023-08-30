@@ -1,6 +1,6 @@
 ﻿namespace SalesProject.Models.Enums
 {
-    public enum SalesStatus
+    public enum SalesStatus :  int
     {
 
         Pending = 0,
