@@ -1,27 +1,46 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using SalesProject.Models;
 using SalesProject.Services;
-using SalesProject.Models.ViewModels;
-using System.Collections.Generic;
-using SalesProject.Services.Exceptions;
-using System.Diagnostics;
+
+
+
 
 namespace SalesProject.Controllers
 {
     public class SalesRecordsController : Controller
     {
+
+        private readonly SalesRecordService _salesRecordService;
+
+        public SalesRecordsController(SalesRecordService salesRecordService)
+        {
+            _salesRecordService = salesRecordService;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult SimpleSearch()
+        public async Task<IActionResult> SimpleSearch(DateTime? minDate, DateTime? maxDate)
         {
-            return View();
+
+            if (!minDate.HasValue)
+            {
+                minDate = new DateTime(DateTime.Now.Year, 1, 1)
+;            }
+            if (!maxDate.HasValue)
+            {
+                maxDate = DateTime.Now;
+            }
+
+            ViewData["minDate"] = minDate.Value.ToString("yyy-MM-dd");
+            ViewData["maxDate"] = maxDate.Value.ToString("yyy-MM-dd");
+            var result = await _salesRecordService.FindByDateAsync(minDate, maxDate);    
+
+            return View(result);
         }
         public IActionResult GroupingSearch()
         {
