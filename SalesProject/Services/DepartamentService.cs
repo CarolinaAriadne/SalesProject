@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SalesProject.Models;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace SalesProject.Services
@@ -18,9 +19,9 @@ namespace SalesProject.Services
             _context = context;
         }
 
-        public List<Departament> FindAll()
+        public async Task<List<Departament>> FindAllAsync()
         {
-            return _context.Departament.OrderBy(d => d.Name).ToList();
+            return await _context.Departament.OrderBy(d => d.Name).ToListAsync();
         }
     }
 }
